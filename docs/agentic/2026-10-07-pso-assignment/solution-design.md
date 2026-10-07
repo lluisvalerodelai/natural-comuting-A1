@@ -24,12 +24,12 @@ The supplied game class maps a real-valued weight matrix to flap or idle actions
 ### Goals
 
 **G1: Run a reproducible PSO search**
-- [ ] G1-AC1 — A valid run returns its best evaluated weight vector and fitness together with the seed, state choice, pipe gap, PSO settings, and episode budget. `verify: run a small search twice with the same seed and compare outputs`
+- [ ] G1-AC1 — A valid run returns its best evaluated weight vector and fitness together with the seed, state choice, pipe gap, PSO settings, and episode budget; the command can pass those weights to the supplied game's evaluate or display method. `verify: run a small search twice with the same seed, compare outputs, and evaluate or display the returned weights`
 - [ ] G1-AC2 — The search uses inertia, personal best, and global best updates; every candidate is scored by the mean of a fixed number of seeded episodes. `verify: inspect a deterministic small run and its evaluation count`
 - [ ] G1-AC3 — A budget below one complete candidate evaluation, invalid state size or gap, or missing game dependency fails with the affected setting and corrective action. During a run, console progress shows episodes used and the current best fitness. `verify: exercise invalid inputs and inspect a small run's output`
 
 **G2: Produce comparable measurements**
-- [ ] G2-AC1 — A small pilot records episode runtime and estimates how many complete swarm updates fit within the runtime limit supplied for the experiment; the selected budget is stated before comparisons. `verify: inspect pilot timing, runtime limit, and budget calculation`
+- [ ] G2-AC1 — A small pilot records episode runtime and estimates how many complete swarm updates fit within the runtime limit supplied per comparison run; the selected budget is stated before comparisons. `verify: inspect pilot timing, per-run runtime limit, and budget calculation`
 - [ ] G2-AC2 — Measured results cover descriptive state, at least two lidar counts, at least two pipe gaps, and at least two PSO parameter settings. Every result identifies state choice, nominal dimension, gap, PSO settings, episode budget, and fitness. `verify: inspect the results table against the planned comparisons`
 - [ ] G2-AC3 — Failed or unfinished runs are excluded from reported measurements, while weak completed results remain. `verify: inspect source measurements and report table`
 
@@ -49,7 +49,7 @@ The supplied game class maps a real-valued weight matrix to flap or idle actions
 
 Add an optional seed parameter to the supplied game class's episode method, passing it to environment reset. Keep its observation, action, reward, and termination logic. A separate hand-in Python file owns input validation, episode scoring, PSO, pilot timing, and comparison runs. PSO maximizes mean episode reward using a global-best topology and the lecture's inertia-weighted update. Positions start in [-1, 1] per the supplied sampler and are clipped to those stated bounds. These are algorithm settings, not a claim that the real-valued search space is inherently bounded.
 
-Use the same fixed, positive number of seeded episodes for each candidate within a comparison. The hand-in command accepts that count, a positive particle count, and a runtime limit; its defaults are two episodes and five particles. A small pilot with those settings measures seconds per complete swarm update. Divide the runtime limit by the pilot time, round down to whole swarm updates, and report that estimated budget before comparisons. Reject a limit too small for one update. The estimate is advisory because later controllers may survive longer. Use the same episode budget across compared conditions. At minimum, compare descriptive state and two lidar counts at gap 100, then descriptive state at one other gap. To meet the assignment's optimiser-parameter requirement, compare the baseline inertia setting with a lower inertia setting on the descriptive state at gap 100, keeping other settings, episode seeds, and budget equal.
+Use the same fixed, positive number of seeded episodes for each candidate within a comparison. The hand-in command accepts that count, a positive particle count, and a runtime limit per comparison run; its defaults are two episodes and five particles. A small pilot with those settings measures seconds per complete swarm update. Divide that per-run limit by the pilot time, round down to whole swarm updates, and report the estimated budget before comparisons. Reject a comparison limit too small for one update. A standalone search may use a smaller budget, as long as it can evaluate one candidate completely; it returns the best evaluated candidate without requiring a full swarm update. The estimate is advisory because later controllers may survive longer. Use the same episode budget across compared conditions. At minimum, compare descriptive state and two lidar counts at gap 100, then descriptive state at one other gap. To meet the assignment's optimiser-parameter requirement, compare the baseline inertia setting with a lower inertia setting on the descriptive state at gap 100, keeping other settings, episode seeds, and budget equal.
 
 Use baseline inertia 0.7298 and cognitive and social coefficients 1.49618 each, as in the lecture notes; use 0.4 for the lower-inertia comparison. Expose particle count and position bounds as settings. Clip new positions to the bounds. Count each game episode against the evaluation budget. The report states the final chosen settings, pilot result, and any limits of the comparison.
 
@@ -64,7 +64,7 @@ flowchart LR
 ## Components
 
 - **`problem.py`**: accept an optional episode seed and pass it to game reset; preserve existing game behavior.
-- **`pso_assignment.py`**: validate settings, evaluate controllers, run PSO and the pilot, execute comparisons, print or save measured results, and provide the documented command entry point.
+- **`pso_assignment.py`**: validate settings, evaluate controllers, run PSO and the pilot, execute comparisons, print or save measured results, and provide the documented command entry point with an option to display the best weights through the supplied game method.
 - **`assignment_latex/Assignment.tex`**: replace instructional text with the PSO report, measured tables or figures, and empty excluded-method placeholders.
 - **`assignment_latex/bibliography.bib`**: add complete metadata for the dimensionality study and other cited sources.
 - **`assignment_latex/` output PDF**: compiled report delivered with the Python hand-in.
@@ -100,3 +100,11 @@ None.
 ## Key facts & assumptions
 
 The state choices must be labeled separately even when both have 24 nominal weights. Changing lidar count also changes available information, so dimension alone cannot explain any observed difference. Seeded reset is expected to control pipe generation, but this remains unverified until the game dependency is installed. A single seeded episode is not a guaranteed score.
+
+## Review record
+
+CAP_REACHED — round-2 findings fixed, not re-reviewed.
+
+- “A budget below one complete candidate evaluation ... fails” conflicts with “Reject a limit too small for one update.” A limit that permits one candidate evaluation but not a complete swarm update must remain valid under the PRD. The design needs separate rules for a small standalone run and the comparison grid.
+- “Divide the runtime limit by the pilot time, round down to whole swarm updates” is ambiguous about whether the runtime limit applies to each condition or the whole experiment. If it applies to the whole experiment, assigning that resulting budget to every condition multiplies the expected runtime by the number of conditions.
+- “A valid run returns its best evaluated weight vector and fitness” does not specify or verify a user-facing way to evaluate or display that returned controller through the supplied problem interface, as required by the PRD.
