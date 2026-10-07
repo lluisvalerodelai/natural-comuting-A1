@@ -51,14 +51,14 @@ Complete the Particle Swarm Optimisation (PSO) portion of the Natural Computing 
 | Edge Case | Scenario | Expected Behavior |
 |-----------|----------|-------------------|
 | In progress | A run has not finished | Its active status and progress or budget used are visible. |
-| Small valid budget | The minimum supported budget is selected | It produces a valid evaluated controller or rejects the budget before starting. |
+| Small valid budget | A budget sufficient to evaluate at least one controller is selected | It produces a valid evaluated controller. A budget allowing zero evaluations is rejected before starting. |
 | Variable outcomes | The same controller is evaluated in stochastic episodes | The evaluation protocol is stated; one episode is not presented as a guaranteed score. |
 
 #### Error Handling
 
 | Error Condition | User Message | System Action |
 |-----------------|--------------|---------------|
-| Invalid run setting | “This setting is invalid. Choose a supported value and run again.” | Do not start the invalid run. |
+| Invalid run setting | “The selected [setting name] value is invalid. Use [supported range or values] and run again.” | Name the affected setting and its supported values; do not start the invalid run. |
 | Missing dependency | “The Flappy Bird dependency is unavailable. Install the required packages and run again.” | Stop cleanly. |
 
 ### Story 2: Compare conditions
@@ -92,7 +92,7 @@ Complete the Particle Swarm Optimisation (PSO) portion of the Natural Computing 
 
 | Error Condition | User Message | System Action |
 |-----------------|--------------|---------------|
-| Invalid condition | “This experiment condition is invalid. Check the state size or pipe gap.” | Identify and skip or stop that condition. |
+| Invalid condition | “This experiment condition is invalid. Check the state size or pipe gap.” | Stop the experiment before recording results for that condition. |
 | Simulation failure | “This condition failed. Review the error and rerun it.” | Exclude it from valid comparisons until rerun. |
 
 ### Story 3: Submit findings
@@ -107,7 +107,7 @@ Complete the Particle Swarm Optimisation (PSO) portion of the Natural Computing 
 - **Given** completed PSO experiments and a selected dimensionality paper
 - **When** I prepare the hand-in
 - **Then** I have readable Python code and a report written in the supplied LaTeX template and available as PDF
-- **And** the report has a revised abstract and introduction, problem description, research questions, experiment setup, results with figures or tables, discussion, dimensionality literature review, short conclusion, and references
+- **And** the report has a revised abstract and introduction, problem description, research questions, experiment setup, labeled figures or tables tied to measured results, discussion, dimensionality literature review, short conclusion, and references
 - **And** the report is at most eight pages excluding references
 - **And** RS and DE locations remain empty placeholders with no claimed implementation, result, or conclusion
 
@@ -130,6 +130,7 @@ Complete the Particle Swarm Optimisation (PSO) portion of the Natural Computing 
 |-----------------|--------------|---------------|
 | PDF unavailable | “The report PDF is missing. Compile the LaTeX report before submission.” | Mark the report incomplete. |
 | Page limit exceeded | “The report exceeds eight pages excluding references. Shorten it before submission.” | Mark the report incomplete. |
+| Results missing | “The PSO results are missing. Run the remaining conditions and update the report.” | Mark the report incomplete. |
 
 ## Story Dependencies
 
@@ -142,11 +143,11 @@ Complete the Particle Swarm Optimisation (PSO) portion of the Natural Computing 
 - **FR-002:** A run MUST expose its best evaluated controller and fitness, and the setup needed to repeat it.
 - **FR-003:** Experiments MUST compare the descriptive state with multiple lidar reading counts and report the resulting controller dimensions.
 - **FR-004:** Experiments MUST vary pipe gap and report simulation and PSO settings for each result.
-- **FR-005:** Results MUST include clear figures or tables and a discussion of what they show, including weak outcomes.
+- **FR-005:** Results MUST include labeled figures or tables that identify measured conditions, units or fitness values, and a discussion of what they show, including weak outcomes.
 - **FR-006:** The report MUST formulate research questions about PSO performance, dimensionality, and problem difficulty, then answer them from the experiments.
-- **FR-007:** The report MUST review at least one paper on dimensionality in discrete or continuous optimisation, covering its problem, performance measure, main finding, critique, and possible improvements.
+- **FR-007:** The report MUST review at least one identifiable paper that investigates how dimensionality affects discrete or continuous optimisation, cite it, and cover its problem, performance measure, main finding, critique, and possible improvements.
 - **FR-008:** The report MUST use the provided LaTeX template, include the assignment's required report sections, compile to PDF, and stay within eight pages excluding references.
-- **FR-009:** The hand-in MUST include readable Python code as a Python file and the report as a PDF.
+- **FR-009:** The hand-in MUST include Python code as a Python file with clear variable names and instructions sufficient to run the reported experiment, and the report as a PDF.
 - **FR-010:** Report locations reserved for RS and DE MUST remain empty placeholders; no RS or DE code, experiments, findings, or prose are required.
 - **FR-011:** Invalid runs and incomplete deliverables MUST be distinguishable from valid results and complete hand-in files.
 
@@ -155,6 +156,8 @@ Complete the Particle Swarm Optimisation (PSO) portion of the Natural Computing 
 | Metric | What it tells us | Direction |
 |--------|------------------|-----------|
 | Required hand-in files present, read from the hand-in directory | The specified files exist | At least one Python file and one PDF |
+| PSO execution, read from a fresh run of the hand-in code | The submitted optimiser works | One completed run producing an evaluated controller and fitness |
+| Repetition record, read from the result table or run records | The measured evidence can be checked | Every reported result identifies its setup and evaluation budget |
 | Experiment coverage, read from the result table | Dimension and difficulty are examined | Descriptive state, at least two lidar counts, at least two pipe gaps |
 | Report completeness, checked in the compiled PDF | The required PSO report content is present | All required sections |
 | Guardrail: pages before references, read from the compiled PDF | Protects the assignment page limit | At most 8 |
@@ -198,3 +201,10 @@ Complete the Particle Swarm Optimisation (PSO) portion of the Natural Computing 
 | D-2 | Complete hand-in | The assignment requires code and a report. | Code only; code and report | Code and report | The user requested everything specified for hand-in. | User clarification | FR-008, FR-009 | Report production is in scope. |
 | D-3 | LaTeX report | The supplied report is a LaTeX template. | Another format; LaTeX | LaTeX source and PDF output | The user explicitly requested LaTeX. | User clarification | FR-008 | The report must compile. |
 | D-4 | Empty excluded sections | The template refers to RS and DE. | Remove references; preserve placeholders | Preserve empty placeholders | The user explicitly requested placeholders. | User clarification | FR-010 | Excluded locations contain no substantive content. |
+
+## Review record
+
+CAP_REACHED — round-2 findings fixed, not re-reviewed.
+
+- “The minimum supported budget” is never defined, so the valid boundary and rejection behavior cannot be tested externally.
+- “This setting is invalid. Choose a supported value and run again.” does not satisfy “an error naming the problem and the action needed to correct it” because it identifies neither the affected setting nor its supported values.
