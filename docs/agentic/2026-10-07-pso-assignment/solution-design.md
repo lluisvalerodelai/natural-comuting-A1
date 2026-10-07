@@ -35,7 +35,7 @@ The supplied game class maps a real-valued weight matrix to flap or idle actions
 
 **G3: Produce the PSO hand-in**
 - [ ] G3-AC1 — The Python file runs the reported experiment with clear settings and instructions; the LaTeX report uses the supplied template and cites a relevant dimensionality study. `verify: run documented command and inspect source and bibliography`
-- [ ] G3-AC2 — The PDF asks and answers separate research questions about PSO performance, dimension, and pipe gap from measured results; its paper review covers the optimisation problem, performance measure, main finding, critique, and possible improvements; pages before references do not exceed eight. `verify: compile and inspect rendered PDF and page break`
+- [ ] G3-AC2 — The PDF has a revised abstract and introduction, problem description, experiment setup, labeled figures or tables, discussion of strong and weak outcomes, short conclusion, and references. It asks and answers separate research questions about PSO performance, dimension, and pipe gap from measured results; its paper review covers the optimisation problem, performance measure, main finding, critique, and possible improvements; pages before references do not exceed eight. `verify: compile and inspect rendered PDF and page break`
 - [ ] G3-AC3 — Random Search and Differential Evolution locations remain empty placeholders, with no claimed implementation or results. `verify: inspect Python and rendered report`
 - [ ] G3-AC4 — Hand-in validation reports actual presence and page count of the PDF and Python file and the measured condition count; missing artifacts cannot yield a complete status. `verify: remove a copy of each required artifact or record and run the check`
 
@@ -80,7 +80,7 @@ An interrupted run leaves completed records intact and the active condition mark
 
 ## Testing & verification
 
-Inspect the first completed pilot before selecting the full grid's repetitions and episode budget. Check that the same seed reproduces an episode in the installed game package; if it does not, record the limitation and do not describe results as deterministic. The local environment currently lacks the Flappy Bird package and `pdflatex`, so integration and PDF verification belong in the implementation phase after dependencies are available.
+Inspect the completed pilot before selecting the episode budget. The full grid keeps three independent runs per condition. Check that the same seed reproduces an episode in the installed game package; if it does not, record the limitation and do not describe results as deterministic. The local environment currently lacks the Flappy Bird package and `pdflatex`, so integration and PDF verification belong in the implementation phase after dependencies are available.
 
 ## Decisions 🔍
 
@@ -101,3 +101,10 @@ None.
 ## Key facts & assumptions
 
 The state choices must be labeled separately even when both have 24 nominal weights. Changing lidar count also changes available information, so dimension alone cannot explain any observed difference. Seeded reset is expected to control pipe generation, but this remains unverified until the game dependency is installed. The best search score and fresh evaluation score must never be conflated.
+
+## Review record
+
+CAP_REACHED — round-2 findings fixed, not re-reviewed.
+
+- “Inspect the first completed pilot before selecting the full grid's repetitions and episode budget.” conflicts with “three independent runs per condition,” which already fixes the repetition count. Clarify that the pilot selects only the episode budget, or define how repetitions may change.
+- “The PDF asks and answers separate research questions about PSO performance, dimension, and pipe gap from measured results” does not cover all required report content. The design omits explicit acceptance for the revised abstract and introduction, problem description, experiment setup, labeled figures or tables, discussion including weak outcomes, short conclusion, and references.
