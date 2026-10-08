@@ -1,0 +1,142 @@
+{
+  "trial_seeds": [
+    101,
+    202
+  ],
+  "fresh_evaluations": 2,
+  "evaluation_budget": 30,
+  "sensitivity_setting_count": 5,
+  "sensitivity_selection": "five settings because median probe runtime was at most 0.25 seconds",
+  "specifications": [
+    {
+      "suite": "observation",
+      "label": "lidar_4",
+      "game": {
+        "state_type": "lidar",
+        "n_lidar": 4,
+        "pipe_gap": 100
+      }
+    },
+    {
+      "suite": "observation",
+      "label": "lidar_8",
+      "game": {
+        "state_type": "lidar",
+        "n_lidar": 8,
+        "pipe_gap": 100
+      }
+    },
+    {
+      "suite": "observation",
+      "label": "lidar_12",
+      "game": {
+        "state_type": "lidar",
+        "n_lidar": 12,
+        "pipe_gap": 100
+      }
+    },
+    {
+      "suite": "observation",
+      "label": "features_12",
+      "game": {
+        "state_type": "features",
+        "n_lidar": 8,
+        "pipe_gap": 100
+      }
+    },
+    {
+      "suite": "pipe_gap",
+      "label": "gap_80",
+      "game": {
+        "state_type": "lidar",
+        "n_lidar": 8,
+        "pipe_gap": 80
+      }
+    },
+    {
+      "suite": "pipe_gap",
+      "label": "gap_100",
+      "game": {
+        "state_type": "lidar",
+        "n_lidar": 8,
+        "pipe_gap": 100
+      }
+    },
+    {
+      "suite": "pipe_gap",
+      "label": "gap_120",
+      "game": {
+        "state_type": "lidar",
+        "n_lidar": 8,
+        "pipe_gap": 120
+      }
+    },
+    {
+      "suite": "sensitivity",
+      "label": "swarm_4",
+      "swarm_size": 4,
+      "inertia": 0.7298,
+      "cognitive": 1.49618,
+      "social": 1.49618,
+      "game": {
+        "state_type": "lidar",
+        "n_lidar": 8,
+        "pipe_gap": 100
+      }
+    },
+    {
+      "suite": "sensitivity",
+      "label": "baseline",
+      "swarm_size": 6,
+      "inertia": 0.7298,
+      "cognitive": 1.49618,
+      "social": 1.49618,
+      "game": {
+        "state_type": "lidar",
+        "n_lidar": 8,
+        "pipe_gap": 100
+      }
+    },
+    {
+      "suite": "sensitivity",
+      "label": "swarm_8",
+      "swarm_size": 8,
+      "inertia": 0.7298,
+      "cognitive": 1.49618,
+      "social": 1.49618,
+      "game": {
+        "state_type": "lidar",
+        "n_lidar": 8,
+        "pipe_gap": 100
+      }
+    },
+    {
+      "suite": "sensitivity",
+      "label": "inertia_0.5",
+      "swarm_size": 6,
+      "inertia": 0.5,
+      "cognitive": 1.49618,
+      "social": 1.49618,
+      "game": {
+        "state_type": "lidar",
+        "n_lidar": 8,
+        "pipe_gap": 100
+      }
+    },
+    {
+      "suite": "sensitivity",
+      "label": "social_2.0",
+      "swarm_size": 6,
+      "inertia": 0.7298,
+      "cognitive": 1.49618,
+      "social": 2.0,
+      "game": {
+        "state_type": "lidar",
+        "n_lidar": 8,
+        "pipe_gap": 100
+      }
+    }
+  ],
+  "interpretation_note": "Changing n_lidar changes both controller weight count and available information.",
+  "reproducibility_limit": "PSO seeds do not seed GymProblem resets, so game pipe sequences differ."
+}

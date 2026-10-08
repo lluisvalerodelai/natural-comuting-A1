@@ -1,0 +1,285 @@
+{
+  "game": {
+    "state_type": "features",
+    "n_lidar": 8,
+    "pipe_gap": 100
+  },
+  "pso": {
+    "dimensions": 24,
+    "swarm_size": 6,
+    "evaluation_budget": 30,
+    "inertia": 0.7298,
+    "cognitive": 1.49618,
+    "social": 1.49618,
+    "position_min": -1.0,
+    "position_max": 1.0,
+    "velocity_limit": 0.2,
+    "seed": 101
+  },
+  "bounds": {
+    "position": [
+      -1.0,
+      1.0
+    ],
+    "initial_velocity": [
+      -0.2,
+      0.2
+    ],
+    "velocity_clamp": [
+      -0.2,
+      0.2
+    ],
+    "position_rule": "clip after each update"
+  },
+  "search_best_fitness": 6.199999999999994,
+  "fresh_fitness": [
+    3.8999999999999986,
+    3.8999999999999986
+  ],
+  "fresh_mean_fitness": 3.8999999999999986,
+  "returned_weights": [
+    1.0,
+    -0.33245334368442525,
+    -0.2763097501500337,
+    0.45647096030896256,
+    -0.5240042954288374,
+    -0.24968838815712982,
+    -0.2846192866857592,
+    0.5148257739668591,
+    -0.8000655499968975,
+    -0.03740968387177998,
+    1.0,
+    0.25603990438776175,
+    -0.08598715404533655,
+    -0.642626531501677,
+    -1.0,
+    1.0,
+    0.8928194294247384,
+    0.9566611913187569,
+    -0.12554128057553948,
+    0.21490227193571088,
+    -0.5091365022589401,
+    0.7475987571193718,
+    0.15991987839357422,
+    -0.42761630970808046
+  ],
+  "weight_count": 24,
+  "history": [
+    {
+      "evaluation": 1,
+      "generation": 0,
+      "particle": 0,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 2.0000000000000013
+    },
+    {
+      "evaluation": 2,
+      "generation": 0,
+      "particle": 1,
+      "fitness": -9.299999999999999,
+      "best_fitness": 2.0000000000000013
+    },
+    {
+      "evaluation": 3,
+      "generation": 0,
+      "particle": 2,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 2.0000000000000013
+    },
+    {
+      "evaluation": 4,
+      "generation": 0,
+      "particle": 3,
+      "fitness": -9.299999999999999,
+      "best_fitness": 2.0000000000000013
+    },
+    {
+      "evaluation": 5,
+      "generation": 0,
+      "particle": 4,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 2.0000000000000013
+    },
+    {
+      "evaluation": 6,
+      "generation": 0,
+      "particle": 5,
+      "fitness": 3.8999999999999986,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 7,
+      "generation": 1,
+      "particle": 0,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 8,
+      "generation": 1,
+      "particle": 1,
+      "fitness": -9.299999999999999,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 9,
+      "generation": 1,
+      "particle": 2,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 10,
+      "generation": 1,
+      "particle": 3,
+      "fitness": -3.299999999999998,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 11,
+      "generation": 1,
+      "particle": 4,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 12,
+      "generation": 1,
+      "particle": 5,
+      "fitness": 3.8999999999999986,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 13,
+      "generation": 2,
+      "particle": 0,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 14,
+      "generation": 2,
+      "particle": 1,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 15,
+      "generation": 2,
+      "particle": 2,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 16,
+      "generation": 2,
+      "particle": 3,
+      "fitness": 3.8999999999999986,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 17,
+      "generation": 2,
+      "particle": 4,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 3.8999999999999986
+    },
+    {
+      "evaluation": 18,
+      "generation": 2,
+      "particle": 5,
+      "fitness": 4.599999999999996,
+      "best_fitness": 4.599999999999996
+    },
+    {
+      "evaluation": 19,
+      "generation": 3,
+      "particle": 0,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 4.599999999999996
+    },
+    {
+      "evaluation": 20,
+      "generation": 3,
+      "particle": 1,
+      "fitness": 3.8999999999999986,
+      "best_fitness": 4.599999999999996
+    },
+    {
+      "evaluation": 21,
+      "generation": 3,
+      "particle": 2,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 4.599999999999996
+    },
+    {
+      "evaluation": 22,
+      "generation": 3,
+      "particle": 3,
+      "fitness": 3.8999999999999986,
+      "best_fitness": 4.599999999999996
+    },
+    {
+      "evaluation": 23,
+      "generation": 3,
+      "particle": 4,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 4.599999999999996
+    },
+    {
+      "evaluation": 24,
+      "generation": 3,
+      "particle": 5,
+      "fitness": 6.199999999999994,
+      "best_fitness": 6.199999999999994
+    },
+    {
+      "evaluation": 25,
+      "generation": 4,
+      "particle": 0,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 6.199999999999994
+    },
+    {
+      "evaluation": 26,
+      "generation": 4,
+      "particle": 1,
+      "fitness": 3.8999999999999986,
+      "best_fitness": 6.199999999999994
+    },
+    {
+      "evaluation": 27,
+      "generation": 4,
+      "particle": 2,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 6.199999999999994
+    },
+    {
+      "evaluation": 28,
+      "generation": 4,
+      "particle": 3,
+      "fitness": 3.8999999999999986,
+      "best_fitness": 6.199999999999994
+    },
+    {
+      "evaluation": 29,
+      "generation": 4,
+      "particle": 4,
+      "fitness": 2.0000000000000013,
+      "best_fitness": 6.199999999999994
+    },
+    {
+      "evaluation": 30,
+      "generation": 4,
+      "particle": 5,
+      "fitness": 3.8999999999999986,
+      "best_fitness": 6.199999999999994
+    }
+  ],
+  "evaluations": 30,
+  "search_seconds": 0.010781750082969666,
+  "reproducibility": "The PSO seed fixes optimiser randomness only. GymProblem creates a new environment and resets it without a seed, so pipe sequences remain unseeded.",
+  "trial_id": 10,
+  "suite": "observation",
+  "label": "features_12"
+}
